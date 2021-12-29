@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="gateway"><![CDATA[juhe]]></item>
+	<item id="title"><![CDATA[聚合数据]]></item>
+	<item id="intro"><![CDATA[【聚合数据-短信API】适用于各类网站、APP等短信验证码、通知短信等，自助化短信内容报备，申请即可使用。自定义签名、99%到达率、3秒送达、专业的客服团队保驾护航]]></item>
+	<item id="bind_template" alt="是否需要绑定模板;1是0否"><![CDATA[1]]></item>
+	<item id="config">
+		<item id="app_key">
+			<item id="title"><![CDATA[APPKEY]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[应用APPKEY，<a href="https://www.juhe.cn/docs/api/id/54" target="_blank">点此申请聚合短信API服务</a>]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="bind_template">
+			<item id="title"><![CDATA[绑定模板]]></item>
+			<item id="type"><![CDATA[hidden]]></item>
+			<item id="value"><![CDATA[1]]></item>
+			<item id="tips"><![CDATA[]]></item>
+		</item>
+	</item>
+</root>

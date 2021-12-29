@@ -1,0 +1,5 @@
+{
+    "require": {
+        "smalls/video-tools": "^1.3"
+    }
+}

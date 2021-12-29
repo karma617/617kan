@@ -1,0 +1,113 @@
+<?php defined("IN_SYSTEM") or die("Access Denied");//防止模板被盗?>
+<style type="text/css">
+    .template_menu{float:left;width:18%;border:1px solid #ddd;padding:5px 10px;}
+    .template_menu ul{}
+    .template_menu ul li{text-align:center;border:1px dashed #ddd;padding:0 5px;margin:5px 0;cursor:pointer;overflow:hidden;height:28px;line-height:28px;}
+    .template_menu ul li:hover,.template_menu ul li.active{border-color:#999;}
+    .template_menu ul li .template-edit{font-size:14px;color:#333;width:80%;text-align:left;overflow:hidden;}
+    .template_menu ul li .layui-icon-delete{font-size:16px;color:#ccc;}
+    .template_menu ul li .layui-icon-delete:hover{color:#f00;}
+    .template_form{float:left;width:70%;border:1px solid #ddd;padding:5px 10px;margin-left:20px;}
+</style>
+<div style="overflow:hidden">
+    <div class="template_menu">
+        <ul>
+            <li class="template-add"><a href="javascript:void(0);" class="aicon ai-tianjia">添加模板</a></li>
+            {volist name="templates" id="vo"}
+            <li data-id="{$vo['id']}" data-key="{$key}">
+                <a href="javascript:void(0);" class="fl template-edit">{$vo['title']}</a>
+                <a href="{:plugins_url('sms/template/del', ['id' => $vo['id']])}" class="layui-icon layui-icon-delete fr template-delete j-ajax" title="删除模板"></a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+    <div class="template_form">
+        <form class="layui-form layui-form-pane" action="{:plugins_url()}" method="post" id="editForm">
+            <div class="page-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模板标题：</label>
+                    <div class="layui-input-inline w300">
+                        <input type="text" class="layui-input field-title" name="title" lay-verify="required" autocomplete="off" placeholder="请填写模板标题">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">模板别名：</label>
+                    <div class="layui-input-inline w300">
+                        <input type="text" class="layui-input field-alias" name="alias" lay-verify="required" autocomplete="off" placeholder="请填写模板别名">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">【重要】，内部触发短信时使用</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">短信示例：</label>
+                    <div class="layui-input-inline" style="width:500px;">
+                        <textarea name="example" class="layui-textarea field-example" placeholder="短信内容示例"></textarea>
+                    </div>
+                    <div class="layui-form-mid layui-word-aux"></div>
+                </div>
+                {volist name="gateways" id="vo"}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{$vo}：</label>
+                    <div class="layui-input-inline w300">
+                        <input type="text" class="layui-input field-gateways_{$key}" name="gateways[{$key}][value]" lay-verify="required" autocomplete="off" placeholder="请填写对应的{$vo}模板ID或CODE">
+                        <input type="hidden" name="gateways[{$key}][id]" class="gateways-id" />
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">【必填项】如果不需要请将此短信平台状态设置为关闭</div>
+                </div>
+                {/volist}
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="hidden" class="field-id" name="id" />
+                    <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit">提交保存</button><button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="system@block/layui" /}
+<script type="text/javascript">
+    var templatesJson = {:json_encode($templates, 1)};
+    var gateways = {:json_encode($gateways, 1)};
+
+    layui.use(['jquery', 'form'], function() {
+        var $ = layui.jquery, form = layui.form, layer = layui.layer;
+
+        // 模板添加
+        $('.template-add').on('click', function() {
+            $('input[type="hidden"]').val('');
+            $('input[type="reset"]').trigger('click');
+        });
+
+        // 模板编辑
+        $('.template-edit').on('click', function() {
+            var obj = $(this).parent('li');
+            var templateKey = obj.attr('data-key');
+            var formData = templatesJson[templateKey];
+            $('.template_menu ul li').removeClass('active');
+            obj.addClass('active');
+            // 重置表单
+            $('input[type="hidden"]').val('');
+            $('input[type="reset"]').trigger('click');
+            // 模板ID
+            $('input[name="id"]').val(formData['id']);
+            // 模板标题
+            $('input[name="title"]').val(formData['title']);
+            // 模板别名
+            $('input[name="alias"]').val(formData['alias']);
+            // 短信示例
+            $('textarea[name="example"]').val(formData['example']);
+            // 网关模板赋值
+            for(var i in gateways) {
+                var indexs = templatesJson[templateKey].has_indexs;
+                // 找出对应的值
+                for(var j in indexs) {
+                    if (i == indexs[j].gateway) {
+                        $('input[name="gateways['+i+'][value]"]').val(indexs[j].gateway_template);
+                        $('input[name="gateways['+i+'][id]"]').val(indexs[j].id);
+                    }
+                }
+            }
+        });
+    });
+</script>

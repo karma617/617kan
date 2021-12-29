@@ -1,0 +1,24 @@
+<div class="layui-row layui-col-space10 hisi-app-row">
+        {volist name="$data" id="vo"}
+        <div class="layui-col-md4 hisi-module-list" style="background-color:#f5f5f5">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <span><img src="__ADMIN_MOD_IMG__/pay/{$vo['code']}.png" onerror="this.src='__ADMIN_IMG__/app.png';" width="20" height="20" /></span>
+                    <span>{$vo['title']}</span>
+                    {if ($vo['install'] == 1)}<input type="text" class="hisi-ajax-input" style="position: absolute;right:0px;top:12px;width:50px;height:20px;border:none;" onkeyup="value=value.replace(/[^\d]/g,'')" value="{$vo['sort']}" data-value="{$vo['sort']}" data-href="{:url('sort?id='.$vo['id'])}" title="排序设置" />{/if}
+                </div>
+                <div class="layui-card-body" style="height:80px;">
+                    <p>{$vo['intro']}</p>
+                </div>
+                <div class="layui-card-header btns">
+                        {if ($vo['install'] == 1)}
+                            {if ($vo['status'] == 1)}<a href="{:url('status', ['id' => $vo['id'], 'val' => 1])}" class="layui-btn layui-btn-sm layui-btn-warm hisi-ajax">禁用</a>{else /}<a href="{:url('status', ['id' => $vo['id'], 'val' => 2])}" class="layui-btn layui-btn-sm layui-btn-normal hisi-ajax">启用</a>{/if}<a href="{:url('config?code='.$vo['code'])}" class="layui-btn layui-btn-normal layui-btn-sm">配置</a><a href="{:url('uninstall?code='.$vo['code'])}" class="layui-btn layui-btn-danger layui-btn-sm hisi-ajax">卸载</a>
+                        {else /}
+                            <a href="{:url('install?code='.$vo['code'])}" class="layui-btn layui-btn-primary layui-btn-sm">安装</a>
+                        {/if}
+                </div>
+            </div>
+        </div>
+        {/volist}
+    </div>
+    {include file="system@block/layui" /}

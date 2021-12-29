@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="gateway"><![CDATA[baidu]]></item>
+	<item id="title"><![CDATA[百度云]]></item>
+	<item id="intro"><![CDATA[【百度云-简单消息服务】构建在稳定可靠的云基础设施之上，便捷高效、稳定可靠的短消息收发服务，适用于短信通知、短信验证码等场景，帮助您快速获取用户、构建服务闭环。]]></item>
+	<item id="bind_template" alt="是否需要绑定模板;1是0否"><![CDATA[1]]></item>
+	<item id="config">
+		<item id="sign_name">
+			<item id="title"><![CDATA[短信签名]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[设置短信签名]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="access_key">
+			<item id="title"><![CDATA[Access Key Id]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[Access Key Id（AK）用于标示用户，<a href="https://cloud.baidu.com/product/sms.html" target="_blank">点此访问百度云-简单消息服务SMS</a>]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="secret_key">
+			<item id="title"><![CDATA[Secret Access Key]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[Secret Access Key（SK）用来验证认证字符串的密钥，<a href="https://cloud.baidu.com/product/sms.html" target="_blank">点此访问百度云-简单消息服务SMS</a>]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="invoke_id">
+			<item id="title"><![CDATA[invokeId]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[调用ID]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="bind_template">
+			<item id="title"><![CDATA[绑定模板]]></item>
+			<item id="type"><![CDATA[hidden]]></item>
+			<item id="value"><![CDATA[1]]></item>
+			<item id="tips"><![CDATA[]]></item>
+		</item>
+	</item>
+</root>

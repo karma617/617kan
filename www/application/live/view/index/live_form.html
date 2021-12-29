@@ -1,0 +1,39 @@
+<form class="layui-form" action="{:url()}?hisiTable=live" method="post" id="editForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">上级栏目</label>
+            <div class="layui-input-inline">
+                <select name="cid" class="field-cid" type="select">
+                    {hisi:loop table="live_category" field="id,name" id="vo"}
+                        <option value="{$vo['id']}" <?php if($vo['id'] == $_GET['id']){echo 'selected';} ?> {/if} >{$vo['name']}</option>
+                    {/hisi:loop}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">节目名称</label>
+            <div class="layui-input-inline">
+                <input type="text" data-disabled class="layui-input field-title" name="title" autocomplete="off" placeholder="请输入节目名称">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">节目地址</label>
+            <div class="layui-input-inline">
+                <textarea type="text" data-disabled class="layui-input field-url" style="height:200px;width:350px" name="url" autocomplete="off" placeholder="多个源用换行分割，格式：CCTV-1$http://XXXXXX.m3u8"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" class="field-id" name="id">
+            </div>
+        </div>
+        <div class="pop-bottom-bar hisi-footer">
+            <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit" lay-data="{pop: true, refresh: true}">提交保存</button>
+            <a href="javascript:parent.layui.layer.closeAll();" class="layui-btn layui-btn-primary ml10">取消</a>
+        </div>
+    </form>
+    {include file="system@block/layui" /}
+    <script>
+    layui.use(['func'], function() {
+        layui.func.assign({:json_encode($formData)});
+    });
+    </script>

@@ -1,0 +1,416 @@
+{
+	"pages": [
+		{
+		    "path": "pages/guide/index",
+		    "style": {
+		        "app-plus": {
+		            "titleNView": false
+		        }
+		    }
+		}
+		, {
+		    "path": "pages/guide/list",
+		    "style": {
+		        "app-plus": {
+		            "titleNView": false,
+		            "bounce": "none"
+		        }
+		    }
+		}
+		, {
+			"path": "pages/index/index",
+			"style":{
+				"navigationBarTitleText": "云影评",
+				"enablePullDownRefresh": true,
+				"app-plus":{
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#dae1f2"
+					},
+					"bounce": "none"
+				}
+			}
+		}
+		, {
+			"path": "pages/detail/index",
+			"style":{
+				"navigationBarTitleText": "",
+				"app-plus":{
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#dae1f2",
+						"buttons": [
+							{
+								"type": "menu"
+							}
+						]
+					},
+					"bounce": "none"
+				}
+			}
+		}
+		, {
+			"path": "pages/cate/index",
+			"style":{
+				"navigationBarTitleText": "频道分类",
+				"app-plus":{
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#dae1f2"
+					},
+					"bounce" : "none"
+				}
+			}
+		}
+		, {
+			"path": "pages/cate/lists",
+			"style":{
+				"navigationBarTitleText": "",
+				"app-plus":{
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#dae1f2"
+					}
+				}
+			}
+		}
+		, {
+			"path": "pages/search/index",
+			"style":{
+				"navigationBarTitleText": "搜索",
+				"app-plus":{
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#dae1f2"
+					},
+					"bounce": "none"
+				}
+			}
+		}
+		, {
+			"path": "pages/user/index",
+			"style":{
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": true,
+				"app-plus":{
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#161827"
+					},
+					"bounce": "none"
+				}
+			}
+		}
+		, {
+			"path": "pages/user/ucenter",
+			"style":{
+				"navigationBarTitleText": "帐号管理",
+				"app-plus":{
+					"bounce": "none",
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#dae1f2"
+					}
+				}
+			}
+		}
+		, {
+			"path": "pages/user/login",
+			"style":{
+				"app-plus":{
+					"bounce": "none"
+				},
+				"navigationBarTitleText": ""
+			}
+		}
+		, {
+			"path": "pages/user/register",
+			"style":{
+				"app-plus":{
+					"bounce": "none"
+				},
+				"navigationBarTitleText": ""
+			}
+		}
+		, {
+			"path": "pages/user/child/changeUsi",
+			"style":{
+				"app-plus":{
+					"bounce": "none"
+				},
+				"navigationBarTitleText": "修改资料"
+			}
+		}
+		, {
+			"path": "pages/user/child/changePsw",
+			"style":{
+				"app-plus":{
+					"bounce": "none"
+				},
+				"navigationBarTitleText": "修改密码"
+			}
+		}
+		, {
+			"path": "pages/user/setting",
+			"style":{
+				"app-plus":{
+					"bounce": "none"
+				},
+				"navigationBarTitleText": "设置"
+			}
+		}
+		, {
+		    "path": "pages/webview/webview",
+		    "style": {
+		        "app-plus": {
+					"bounce": "none",
+		            "titleNView": false
+		        }
+		    }
+		}
+		, {
+		    "path": "pages/user/history",
+		    "style": {
+		        "navigationBarTitleText": "浏览历史",
+		        "app-plus": {
+		        	"bounce": "none",
+		        	"titleNView":{
+		        		"backgroundColor": "#161827",
+		        		"titleColor": "#dae1f2"
+		        	}
+		        }
+		    }
+		}
+		, {
+			"path": "pages/user/feedback",
+			"style":{
+				"app-plus":{
+					"bounce": "none"
+				},
+				"navigationBarTitleText": "建议反馈"
+			}
+		}
+		, {
+		    "path": "pages/live/index",
+		    "style": {
+				"navigationBarTitleText": "发现",
+				"app-plus":{
+					"bounce": "none",
+					"titleNView":{
+						"backgroundColor": "#161827",
+						"titleColor": "#dae1f2"
+					}
+				}
+		    }
+		}
+		, {
+		    "path": "pages/live/detail",
+		    "style": {
+		        "app-plus": {
+					"bounce": "none",
+		            "titleNView":{
+		            	"backgroundColor": "#161827",
+		            	"titleColor": "#dae1f2",
+		            	"buttons": [
+		            		{
+		            			"type": "menu"
+		            		}
+		            	]
+		            }
+		        }
+		    }
+		}
+		, {
+		    "path": "pages/user/child/giftCode",
+		    "style": {
+		        "app-plus": {
+					"bounce": "none",
+		            "titleNView":{
+		            	"backgroundColor": "#161827",
+		            	"titleColor": "#dae1f2"
+		            }
+		        },
+				"navigationBarTitleText": "兑换码"
+		    }
+		}
+		
+		
+		
+		
+		
+		// , {
+		// 	"path": "pages/analysis/index",
+		// 	"style":{
+		// 		"navigationBarTitleText": "VIP视频解析",
+		// 		"app-plus":{
+		// 			"bounce": "none",
+		// 			"titleNView":{
+		// 				"backgroundColor": "#161827",
+		// 				"titleColor": "#dae1f2"
+		// 			}
+		// 		}
+		// 	}
+		// }
+		// , {
+		// 	"path": "pages/analysis/play",
+		// 	"style":{
+		// 		"app-plus":{
+		// 			"titleNView":false
+		// 		}
+		// 	}
+		// }
+		// , {
+		// 	"path": "pages/user/about",
+		// 	"style":{
+		// 		"app-plus":{
+		// 			"bounce": "none"
+		// 		},
+		// 		"navigationBarTitleText": "关于应用"
+		// 	}
+		// }
+		// , {
+		// 	"path": "pages/user/punch",
+		// 	"style":{
+		// 		"app-plus":{
+		// 			"bounce": "none"
+		// 		},
+		// 		"navigationBarTitleText": "免责声明"
+		// 	}
+		// }
+		// , {
+		//     "path": "pages/user/child/paynumber",
+		//     "style": {
+		// 		"navigationBarTitleText": "短视频无水印下载",
+		//         "app-plus": {
+		// 			"bounce": "none",
+		// 			"titleNView":{
+		// 				"backgroundColor": "#161827",
+		// 				"titleColor": "#dae1f2"
+		// 			}
+		//         }
+		//     }
+		// }
+		// , {
+		//     "path": "pages/user/child/parsevideo",
+		//     "style": {
+		// 		"navigationBarTitleText": "短视频解析下载",
+		//         "app-plus": {
+		// 			"bounce": "none",
+		// 			"titleNView":{
+		// 				"backgroundColor": "#161827",
+		// 				"titleColor": "#dae1f2"
+		// 			}
+		//         }
+		//     }
+		// }
+		// , {
+		//     "path": "pages/pay/index",
+		//     "style": {
+		// 		"navigationBarTitleText": "收银台",
+		//         "app-plus": {
+		// 			"bounce": "none",
+		// 			"titleNView":{
+		// 				"backgroundColor": "#161827",
+		// 				"titleColor": "#dae1f2"
+		// 			}
+		//         }
+		//     }
+		// }
+		// , {
+		//     "path": "pages/pay/detail",
+		//     "style": {
+		// 		"navigationBarTitleText": "支付状态",
+		//         "app-plus": {
+		// 			"bounce": "none",
+		// 			"titleNView":{
+		// 				"backgroundColor": "#161827",
+		// 				"titleColor": "#dae1f2"
+		// 			}
+		//         }
+		//     }
+		// }
+		// , {
+		//     "path": "pages/download/index",
+		//     "style": {
+		// 		"navigationBarTitleText": "下载列表",
+		//         "app-plus": {
+		// 			"bounce": "none",
+		// 			"titleNView":{
+		// 				"backgroundColor": "#161827",
+		// 				"titleColor": "#dae1f2"
+		// 			}
+		//         }
+		//     }
+		// }
+		// , {
+		//     "path": "pages/download/player",
+		//     "style": {
+		//         "app-plus": {
+		// 			"titleNView":false,
+		// 			"subNVues":[{
+		// 				"id": "locationPlayer", // 唯一标识  
+		// 				"path": "pages/download/subNVue/player",
+		// 				"style": {
+		// 					"width": "100%",
+		// 					"top": "0"
+		// 				} 
+		// 			}]
+		//         }
+		//     }
+		// }
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "云影评",
+		"navigationBarBackgroundColor": "#161827",
+		"backgroundColor": "#161827"
+	},
+	"tabBar": {
+	    "color": "#a1a6b3",
+	    "selectedColor": "#ed2f85",
+	    "borderStyle": "black",
+	    "backgroundColor": "#161827",
+	    "list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/icon/homepage_normal.png",
+				"selectedIconPath": "static/icon/homepage_active.png",
+				"text": "首页"
+			}
+			, {
+				"pagePath": "pages/search/index",
+				"iconPath": "static/icon/search_normal.png",
+				"selectedIconPath": "static/icon/search_active.png",
+				"text": "搜索"
+			}
+			, {
+				"pagePath": "pages/cate/index",
+				"iconPath": "static/icon/video_normal.png",
+				"selectedIconPath": "static/icon/video_active.png",
+				"text": "分类"
+			}
+			// , {
+			// 	"pagePath": "pages/live/index",
+			// 	"iconPath": "static/icon/select_normal.png",
+			// 	"selectedIconPath": "static/icon/select_active.png",
+			// 	"text": "发现"
+			// }
+			, {
+				"pagePath": "pages/user/index",
+				"iconPath": "static/icon/people_normal.png",
+				"selectedIconPath": "static/icon/people_active.png",
+				"text": "我的"
+			}
+		]
+	},
+	"condition" : {
+		"current": 0,
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
+}

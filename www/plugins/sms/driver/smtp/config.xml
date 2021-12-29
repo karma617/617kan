@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="gateway"><![CDATA[smtp]]></item>
+	<item id="title"><![CDATA[SMTP]]></item>
+	<item id="intro"><![CDATA[【邮件服务】smtp邮件发送支持SSL。调用示例:'runhook('send_sms', ['mobile' => 'xxx@qq.com', 'template' => 'xxx','content'=>'标题', 'data' => ['code' => 1],'gateway' => 'smtp']);']]></item>
+	<item id="bind_template" alt="是否需要绑定模板;1是0否"><![CDATA[1]]></item>
+	<item id="config">
+		<item id="server">
+			<item id="title"><![CDATA[服务器]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[服务器的ip或者域名,帮助说明]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="username">
+			<item id="title"><![CDATA[认证账号]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[认证账号]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="password">
+			<item id="title"><![CDATA[认证密码]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[认证密码]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="port">
+			<item id="title"><![CDATA[默认端口]]></item>
+			<item id="type"><![CDATA[input]]></item>
+			<item id="value"><![CDATA[465]]></item>
+			<item id="tips"><![CDATA[服务器的端口，smtp默认25号端口]]></item>
+		</item>
+		<item id="isSecurity">
+			<item id="title"><![CDATA[安全连接]]]></item>
+			<item id="type"><![CDATA[switch]]></item>
+			<item id="value"><![CDATA[1]]></item>
+			<item id="options"><![CDATA[开:关]]></item>
+			<item id="tips"><![CDATA[是否为安全连接]]></item>
+		</item>
+		<item id="bind_template">
+			<item id="title"><![CDATA[绑定模板]]></item>
+			<item id="type"><![CDATA[hidden]]></item>
+			<item id="value"><![CDATA[1]]></item>
+			<item id="tips"><![CDATA[]]></item>
+		</item>
+	</item>
+</root>

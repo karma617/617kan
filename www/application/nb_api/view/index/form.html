@@ -1,0 +1,24 @@
+<form class="layui-form pt10" action="{:url()}" method="post" id="editForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-name" name="name"  lay-verify="required" lay-verify="title" autocomplete="off" placeholder="请输入名称">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="hidden" class="field-id" name="id">
+        </div>
+    </div>
+    <div class="pop-bottom-bar hisi-footer">
+        <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit" hisi-data="{pop: true, refresh: true}">提交保存</button>
+        <a href="javascript:parent.layui.layer.closeAll();" class="layui-btn layui-btn-primary ml10">取消</a>
+    </div>
+</form>
+{include file="system@block/layui" /}
+<script>
+layui.use(['func'], function() {
+    layui.func.assign({:json_encode($formData)});
+});
+</script>

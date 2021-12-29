@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="gateway"><![CDATA[aliyun]]></item>
+	<item id="title"><![CDATA[阿里云]]></item>
+	<item id="intro"><![CDATA[【阿里云-云通信】短信服务（Short Message Service）是阿里云为用户提供的一种通信服务的能力，支持快速发送短信验证码、短信通知等，服务范围覆盖全球。]]></item>
+	<item id="bind_template" alt="是否需要绑定模板;1是0否"><![CDATA[1]]></item>
+	<item id="config">
+		<item id="sign_name">
+			<item id="title"><![CDATA[短信签名]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[设置短信签名]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="app_id">
+			<item id="title"><![CDATA[Access Key Id]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[<a href="https://usercenter.console.aliyun.com/#/manage/ak" target="_blank">点此打开阿里云AccessKey</a>]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="app_key">
+			<item id="title"><![CDATA[Access Key Secret]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[<a href="https://usercenter.console.aliyun.com/#/manage/ak" target="_blank">点此打开阿里云AccessKey</a>]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="bind_template">
+			<item id="title"><![CDATA[绑定模板]]></item>
+			<item id="type"><![CDATA[hidden]]></item>
+			<item id="value"><![CDATA[1]]></item>
+			<item id="tips"><![CDATA[]]></item>
+		</item>
+	</item>
+</root>

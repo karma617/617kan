@@ -1,0 +1,56 @@
+<?php defined("IN_SYSTEM") or die("Access Denied");//防止模板被盗?>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="">
+        <colgroup>
+            <col>
+            <col width="100">
+            <col width="120">
+            <col width="140">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>短信平台</th>
+                <th>默认开关</th>
+                <th>状态开关</th>
+                <th>操作</th>
+            </tr> 
+        </thead>
+        <tbody>
+            {volist name="dataList" id="vo"}
+            <tr>
+                <td>
+                    <div class="module-list-info">
+                        <img src="/static/plugins/sms/image/{$vo['gateway']}.png" width="56" height="56">
+                        <div class="txt">
+                            <h3>{$vo['title']}</h3>
+                            <p>{$vo['intro']}</p>
+                        </div>
+                    </div>
+                </td>
+                {if condition="$vo['install'] eq 1"}
+                    <td>
+                       <input type="checkbox" name="default" {if condition="$vo['default'] eq 1"}checked=""{/if} value="{$vo['default']}" lay-skin="switch" lay-filter="switchStatus" lay-text="是|否" data-href="{:plugins_url('sms/index/def', ['id' => $vo['id']])}">
+                    </td>
+                    <td>
+                       <input type="checkbox" name="status" {if condition="$vo['status'] eq 1"}checked=""{/if} value="{$vo['status']}" lay-skin="switch" lay-filter="switchStatus" lay-text="开|关" data-href="{:plugins_url('sms/index/status', ['id' => $vo['id']])}">
+                    </td>
+                    <td>
+                        <div class="layui-btn-group">
+                            <a href="{:plugins_url('sms/index/config', ['gateway' => $vo['gateway']])}" class="layui-btn layui-btn-primary layui-btn-sm">配置</a>
+                        </div>
+                    </td>
+                {else /}
+                    <td>---</td>
+                    <td>---</td>
+                    <td>
+                        <div class="layui-btn-group">
+                            <a href="{:plugins_url('sms/index/config', ['gateway' => $vo['gateway']])}" class="layui-btn layui-btn-primary layui-btn-sm">安装</a>
+                        </div>
+                    </td>
+                {/if}
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+</div>
+{include file="system@block/layui" /}

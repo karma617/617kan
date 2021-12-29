@@ -1,0 +1,116 @@
+<form class="layui-form" action="{:url()}" method="post" id="editForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-title" name="title" lay-verify="required" autocomplete="off" placeholder="请填写标题">
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型</label>
+        <div class="layui-input-inline">
+            <select name="isad" class="field-isad" type="select" lay-filter="isad">
+                <option value="">请选择类型</option>
+                <option value="0">banner图</option>
+                <option value="1">自定义链接广告</option>
+                <option value="2">小程序BANNER广告</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item ad" {if condition="!empty($formData) && $formData['isad'] == 0"} style="display: none;" {/if}>
+        <label class="layui-form-label">广告链接/ID</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-ad_url" name="ad_url" autocomplete="off" placeholder="请填写广告跳转地址">
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项，自定义链接广告填写链接地址，小程序广告填写广告位ID</div>
+    </div>
+    <div class="layui-form-item banner" {if condition="!empty($formData) && $formData['isad'] != 0"} style="display: none;" {/if}>
+        <label class="layui-form-label">视频id</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-vid" name="vid" value="0" lay-verify="required" autocomplete="off" placeholder="请填写banner图链接的视频id，否则填0">
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项，点击banner跳转到视频播放页的视频id</div>
+    </div>
+    <div class="layui-form-item ad-img" {if condition="!empty($formData) && $formData['isad'] != 0"} style="display: none;" {/if}>
+        <label class="layui-form-label">图片</label>
+            <div class="layui-input-inline upload">
+                <button type="button" name="img" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
+                <input type="hidden" class="upload-input field-img" name="img">
+                {if condition="!empty($formData['img'])"}
+                <img src="{$formData['img']}" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+                {else /}
+                <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
+                {/if}
+            </div>
+            <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item ad-img" {if condition="!empty($formData) && $formData['isad'] != 0"} style="display: none;" {/if}>
+        <label class="layui-form-label">图片地址</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-img" name="img_url" autocomplete="off" placeholder="请填写广告跳转地址">
+        </div>
+        <div class="layui-form-mid layui-word-aux">上传图片和图床地址都有的时候，默认使用图床地址</div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="hidden" class="field-id" name="id">
+            <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit">提交</button>
+            <a href="{:url('index')}" class="layui-btn layui-btn-primary ml10">返回</a>
+        </div>
+    </div>
+</form>
+
+{include file="system@block/layui" /}
+<script>
+layui.use(['upload', 'func', 'form'], function() {
+    var $ = layui.jquery, layer = layui.layer, upload = layui.upload, func = layui.func, form = layui.form;
+    // 编辑模式下表单自动赋值
+    func.assign({:json_encode($formData)});
+
+    form.on('select(isad)', function(data){
+        if (data.value != 0) {
+            $('.ad').show().find('input').attr('lay-verify', 'required');
+            $('.banner').hide().find('input').attr('lay-verify', '');
+            if (data.value == 1) {
+                $('.ad-img').show();
+            } else {
+                $('.ad-img').hide();
+            }
+        } else {
+            $('.ad').hide().find('input').attr('lay-verify', '');
+            $('.banner').show().find('input').attr('lay-verify', 'required');
+            $('.ad-img').show();
+        }
+    });
+
+    /**
+     * 附件上传url参数说明
+     * @param string $from 来源
+     * @param string $group 附件分组,默认sys[系统]，模块格式：m_模块名，插件：p_插件名
+     * @param string $water 水印，参数为空默认调用系统配置，no直接关闭水印，image 图片水印，text文字水印
+     * @param string $thumb 缩略图，参数为空默认调用系统配置，no直接关闭缩略图，如需生成 500x500 的缩略图，则 500x500多个规格请用";"隔开
+     * @param string $thumb_type 缩略图方式
+     * @param string $input 文件表单字段名
+     */
+    upload.render({
+        elem: '.layui-upload'
+        ,url: '{:url("system/annex/upload?water=&thumb=&from=&group=")}'
+        ,method: 'post'
+        ,before: function(input) {
+            layer.msg('文件上传中...', {time:3000000});
+        },done: function(res, index, upload) {
+            var obj = this.item;
+            if (res.code == 0) {
+                layer.msg(res.msg);
+                return false;
+            }
+            layer.closeAll();
+            var input = $(obj).parents('.upload').find('.upload-input');
+            if ($(obj).attr('lay-type') == 'image') {
+                input.siblings('img').attr('src', res.data.file).show();
+            }
+            input.val(res.data.file);
+        }
+    });
+});
+</script>

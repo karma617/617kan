@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="gateway"><![CDATA[tencent]]></item>
+	<item id="title"><![CDATA[腾讯云]]></item>
+	<item id="intro"><![CDATA[【腾讯云-短信SMS】短信（Short Message Service）沉淀腾讯十年短信服务技术和经验，国内短信验证秒级可达、99%到达率，国际短信覆盖全球200+国家/地区]]></item>
+	<item id="bind_template" alt="是否需要绑定模板;1是0否"><![CDATA[1]]></item>
+	<item id="config">
+		<item id="sign_name">
+			<item id="title"><![CDATA[短信签名]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[设置短信签名]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="app_id">
+			<item id="title"><![CDATA[SDK AppID]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[SDK AppID是短信应用的唯一标识，<a href="https://cloud.tencent.com/product/sms" target="_blank">点此申请腾讯云短信</a>]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="app_key">
+			<item id="title"><![CDATA[App Key]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="tips"><![CDATA[App Key是用来校验短信发送请求合法性的密码，<a href="https://cloud.tencent.com/product/sms" target="_blank">点此申请腾讯云短信</a>]]></item>
+			<item id="sensitive"><![CDATA[yes]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+		</item>
+		<item id="bind_template">
+			<item id="title"><![CDATA[绑定模板]]></item>
+			<item id="type"><![CDATA[hidden]]></item>
+			<item id="value"><![CDATA[1]]></item>
+			<item id="tips"><![CDATA[]]></item>
+		</item>
+	</item>
+</root>

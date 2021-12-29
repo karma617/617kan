@@ -1,0 +1,79 @@
+<div class="layui-form hisi-search">
+    <form action="{:plugins_url()}" method="get" id="hisi-table-search">
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <input type="text" name="date" class="layui-input" id="dateFilter" placeholder=" 发送时间过滤 ">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <input type="text" name="template" lay-verify="required" placeholder="按模板ID搜索" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <select name="gateway" class="layui-input">
+                    <option value="">短信平台</option>
+                    {volist name="gateways" id="vo"}
+                    <option value="{$key}">{$vo}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <button type="submit" class="layui-btn layui-btn-normal layui-icon layui-icon-search">查询</button><button type="reset" class="layui-btn layui-btn-primary layui-icon layui-icon-delete">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<table id="dataTable" lay-filter="dataTable"></table>
+
+{include file="system@block/layui" /}
+<script type="text/javascript">
+    var gateways = {:json_encode($gateways, 1)};
+    layui.use(['jquery', 'laydate', 'table'], function() {
+        var $ = layui.jquery, laydate = layui.laydate, table = layui.table;
+        table.render({
+            elem: '#dataTable'
+            ,url: '{:plugins_url()}' //数据接口
+            ,page: true //开启分页
+            ,limit: 15
+            ,limits:[15, 30, 50, 100, 200]
+            ,cellMinWidth: 90
+            ,text: {
+                none : '暂无相关数据'
+            }
+            ,cols: [[ //表头
+                {field: 'gateway', title: '短信平台', templet: function(d){
+                    return gateways[d.gateway];
+                }}
+                ,{field: 'template', title: '模板ID'}
+                ,{field: 'params', title: '请求参数'}
+                ,{field: 'ctime', title: '创建时间', sort: true}
+                ,{title: '操作', width: 90, templet: function(d) {
+                    return '<a href="{:plugins_url("sms/logs/del")}?id='+d.id+'" class="j-tr-del layui-btn layui-btn-xs layui-btn-danger">删除</a>';
+                }}
+            ]]
+        });
+
+        // 筛选
+        $('#searchForm').submit(function(){
+            var that = $(this), arr = that.serializeArray(), whereObj = {};
+            for(var i in arr) {
+                whereObj[arr[i].name] = arr[i].value;
+            }
+    
+            table.reload('table', {
+              url: '{:plugins_url()}',
+              where: whereObj
+            });
+            return false;
+        });
+
+        laydate.render({
+            elem: '#dateFilter'
+            ,range: true
+        });
+    });
+</script>

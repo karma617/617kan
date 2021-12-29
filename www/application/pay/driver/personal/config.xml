@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="code"><![CDATA[personal]]></item>
+	<item id="title"><![CDATA[个人免签支付]]></item>
+	<item id="intro"><![CDATA[采用手机端监听收款通知实现，因接口不稳定性，推荐使用支付宝微信支付。]]></item>
+	<item id="status"><![CDATA[0]]></item>
+	<item id="applies"><![CDATA[pc,wap]]></item>
+	<item id="config">
+		<item id="vkey">
+			<item id="title"><![CDATA[通讯密匙]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+			<item id="tips"><![CDATA[与支付后台通讯的密钥]]></item>
+		</item>
+		<item id="payment_callback">
+			<item id="title"><![CDATA[支付回调方法]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+			<item id="tips"><![CDATA[支付成功后需要执行的业务代码，格式：模块/控制器/方法]]></item>
+		</item>
+		<item id="refund_callback">
+			<item id="title"><![CDATA[退款回调方法]]></item>
+			<item id="type"><![CDATA[text]]></item>
+			<item id="value"><![CDATA[]]></item>
+			<item id="verify"><![CDATA[required]]></item>
+			<item id="tips"><![CDATA[退款成功后需要执行的业务代码，格式：模块/控制器/方法]]></item>
+		</item>
+	</item>
+</root>

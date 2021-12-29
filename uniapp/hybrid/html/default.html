@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="./css/mui.min.css" rel="stylesheet" />
+		<link href="./video/videoStyleBlue.css" rel="stylesheet" />
+		<style>
+			body{ background: #333;}
+			.icon-btu{ top: 15px;}
+		</style>
+	</head>
+	<body>
+		<div id="play-container">
+			
+		</div>
+		<script src="./js/mui.min.js"></script>
+		<script type="text/javascript" src="./js/uni.webview.1.5.1.js"></script>
+		<script type="text/javascript">
+			var isH5 = false;
+			uni.getEnv(function(res) {
+				isH5 = res.h5;
+			});
+			mui.init();
+			//网页操作 Uniapp 应用
+			document.addEventListener('UniAppJSBridgeReady', function() {
+				//点击返回事件
+				mui.back = function() {
+					uni.navigateBack();
+				}
+				
+				mui("body").on("tap","#btu",function(){
+					uni.postMessage({
+						data: {
+							action: 'message'
+						}
+					});
+				});
+			});
+			//设置播放视频链接,并播放该视频
+			var urls = getQueryVariable(urls);
+			var html = '<iframe width="100%" height="200px" src="'+ urls +'" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+				document.getElementById('play-container').innerHTML = html;
+			
+			function getQueryVariable(variable)
+			{
+				var query = window.location.search.substring(1);
+				var vars = query.split("&");
+				for (var i=0;i<vars.length;i++) {
+					   var pair = vars[i].split("=");
+					   if(pair[0] == variable){return pair[1];}
+				}
+				return(false);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,12 @@
+/*
+ sql安装文件
+*/
+CREATE TABLE `hisi_banner` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`title` VARCHAR(50) NOT NULL DEFAULT '',
+	`img` VARCHAR(1000) NOT NULL DEFAULT '',
+	`status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1' COMMENT '1 启用 0 禁用',
+	`create_time` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+	`update_time` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+) COMMENT='轮播图' COLLATE='utf8_general_ci' ENGINE=MyISAM;

@@ -1,0 +1,43 @@
+<form class="layui-form" action="{:url()}" method="post" id="editForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">上级栏目</label>
+            <div class="layui-input-inline">
+                <select name="pid" class="field-pid" type="select">
+                    <option value="0">顶级分类</option>
+                    {hisi:loop table="live_category" field="id,name" id="vo"}
+                        <option value="{$vo['id']}">{$vo['name']}</option>
+                    {/hisi:loop}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">栏目名称</label>
+            <div class="layui-input-inline">
+                <input type="text" data-disabled class="layui-input field-name" name="name" autocomplete="off" placeholder="请输入栏目名称">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <input type="radio" class="field-status" name="status" value="1" title="启用" checked>
+                <input type="radio" class="field-status" name="status" value="0" title="禁用">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                {:token()}
+                <input type="hidden" class="field-id" name="id">
+                <input type="hidden" name="salt" value="{:random(16, 0)}" class="field-salt" />
+            </div>
+        </div>
+        <div class="pop-bottom-bar hisi-footer">
+            <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit" lay-data="{pop: true, refresh: true}">提交保存</button>
+            <a href="javascript:parent.layui.layer.closeAll();" class="layui-btn layui-btn-primary ml10">取消</a>
+        </div>
+    </form>
+    {include file="system@block/layui" /}
+    <script>
+    layui.use(['func'], function() {
+        layui.func.assign({:json_encode($formData)});
+    });
+    </script>

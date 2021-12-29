@@ -1,0 +1,102 @@
+<div class="layui-form hisi-search">
+    <form action="{:url()}" method="get" id="hisi-table-search">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户手机号：</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input field-mobile" name="mobile" autocomplete="off"
+                    placeholder="请输入用户绑定的手机号">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">会员组：</label>
+            <div class="layui-input-inline w200">
+                <select name="group_id" class="field-group_id" type="select">
+                    <option value="">全部</option>
+                    {hisi:loop table="user_group" field="id,name" id="vo" order="id asc"}
+                    {if condition="$i != 1"}
+                    <option value="{$vo['id']}" {if condition="isset($_GET['id']) && $vo['id'] == $_GET['id']"
+                        }selected{/if}>{$vo['name']}</option>
+                    {/if}
+                    {/hisi:loop}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">使用状态：</label>
+            <div class="layui-input-inline w200">
+                <select name="status" class="field-status" type="select">
+                    <option value="">全部</option>
+                    <option value="0">未使用</option>
+                    <option value="1">已使用</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item hisi-search-btn">
+            <div class="layui-input-inline w400">
+                <button type="submit" class="layui-btn layui-btn-normal layui-icon layui-icon-search">查询</button>
+                <button type="reset" class="layui-btn layui-btn-primary layui-icon layui-icon-delete">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table id="dataTable"></table>
+<script type="text/html" id="usernameTpl">
+    <div style="line-height:18px;">
+        <img src="{{ d.avatar ? d.avatar : '__ADMIN_IMG__/avatar.png' }}" width="60" height="60" class="fl">
+        <p class="ml10 fl"><strong class="mcolor">{{ d.mobile }} </strong><br>手机：{{ d.mobile }}</p>
+    </div>
+</script>
+<script type="text/html" id="groupTpl">
+    <span>{{ d.belong_group.name }}</span>
+</script>
+<script type="text/html" title="操作按钮模板" id="buttonTpl">
+    <a href="{:url('del')}?id={{ d.id }}" class="layui-btn layui-btn-xs layui-btn-danger j-tr-del">删除</a>
+</script>
+{include file="system@block/layui" /}
+<script id="toolbar" type="text/html">
+    <a href="{:url('add')}" class="layui-btn layui-btn-normal layui-btn-sm hisi-iframe-pop" hisi-data="{width: '550px', height: '420px', title: '生成卡密'}">&nbsp;生成卡密</a>
+</script>
+<script type="text/javascript">
+    layui.use(['jquery', 'laydate', 'table'], function () {
+        var $ = layui.jquery, laydate = layui.laydate, table = layui.table;
+        table.render({
+            elem: '#dataTable'
+            , url: '{:url()}' //数据接口
+            , skin: 'row'
+            , even: true
+            , page: true //开启分页
+            , limit: 15
+            , limits: [15, 30, 50, 100, 200]
+            , cellMinWidth: 90
+            , text: {
+                none: '暂无相关数据'
+            }
+            , toolbar: '#toolbar'
+            , defaultToolbar: ['filter', 'exports']
+            , cols: [[ //表头
+                { field: 'id', title: 'id', width: 100 }
+                , { field: 'codekey', title: '密匙', width: 300 }
+                , { field: 'group_id', title: '对应会员组', width: 100, templet: '#groupTpl' }
+                , {
+                    field: 'user_id', title: '绑定的手机号', width: 200, templet: function (d) {
+                        return typeof(d.userinfo) != 'string' ? d.userinfo.mobile : '无';
+                    }
+                }
+                , {
+                    field: 'status', title: '状态', width: 100, templet: function (d) {
+                        return d.status ? '<span style="color: red">已使用</span>' : '<span style="color: green">未使用</span>';
+                    }
+                }
+                , { field: 'create_time', title: '创建时间', width: 300 }
+                , { field: 'update_time', title: '使用时间', width: 300 }
+                , { title: '操作', templet: '#buttonTpl' }
+            ]]
+            , done: function () {
+                if (typeof (layui.global.addTableTool) !== 'undefined') {
+                    layui.global.addTableTool();
+                }
+            }
+        });
+    });
+</script>

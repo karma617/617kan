@@ -1,0 +1,137 @@
+<form class="layui-form" action="{:url('addad')}" method="post" id="editForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label w200">广告名</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-title" name="title" lay-verify="required" autocomplete="off"
+                placeholder="请填写广告名">
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项</div>
+    </div>
+    {if condition="$type == 2"}
+    <div class="layui-form-item">
+        <label class="layui-form-label w200">广告介绍</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-desc" name="desc" lay-verify="required" autocomplete="off"
+                placeholder="请填写广告介绍">
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项</div>
+    </div>
+    {/if}
+    <div class="layui-form-item">
+        <label class="layui-form-label w200">广告类型</label>
+        <div class="layui-input-inline w200">
+            <select name="ad_type" class="field-ad_type" type="select" lay-filter="adtype">
+                <option value="">请选择广告类型</option>
+                {if condition="$_GET['type'] < 5"}
+                    <option value="1" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 1" }select{/if}>自定义图片广告</option>
+                    <option value="2" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 2" }select{/if}>自定义视频广告</option>
+                    {if condition="$_GET['type'] != 3 && $_GET['type'] > 1"}
+                        <option value="3" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 3" }select{/if}>小程序BANNER广告</option>
+                        <option value="4" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 4" }select{/if}>小程序视频广告</option>
+                        <option value="6" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 6" }select{/if}>小程序格子广告</option>
+                    {/if}
+                    {if condition="$_GET['type'] == 3"}
+                        <option value="5" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 5" }select{/if}>小程序插屏广告</option>
+                    {/if}
+                {else/}
+                    {if condition="$_GET['type'] == 5"}
+                        <option value="7" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 7" }select{/if}>小程序视频播放前广告</option>
+                    {/if}
+                    {if condition="$_GET['type'] == 6"}
+                        <option value="8" {if condition="isset($formData['ad_type']) && $formData['ad_type'] == 8" }select{/if}>小程序视频激励广告</option>
+                    {/if}
+                {/if}
+            </select>
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项，带有小程序前缀的广告类型为微信小程序独有</div>
+    </div>
+    <div class="layui-form-item ad-video" {if condition="$_GET['type'] != 2" } style="display: none;" {/if}>
+        <label class="layui-form-label w200">视频地址</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-v_url" name="v_url" autocomplete="off"
+                placeholder="请填写视频播放地址（.mp4等后缀）">
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label w200">跳转地址/广告位ID</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input field-url" name="url" lay-verify="required" autocomplete="off"
+                placeholder="请填写广告地址或广告位ID">
+        </div>
+        <div class="layui-form-mid layui-word-aux">必填项</div>
+    </div>
+    <div class="layui-form-item ad-img" {if condition="$_GET['type'] != 1" } style="display: none;" {/if}>
+        <label class="layui-form-label w200">广告图片</label>
+        <div class="layui-input-inline upload">
+            <button type="button" name="img" class="layui-btn layui-btn-primary layui-upload" lay-type="image"
+                lay-data="{accept:'image'}">请上传图片</button>
+            <input type="hidden" class="upload-input field-img" name="img">
+            {if condition="!empty($formData['img'])"}
+            <img src="{$formData['img']}" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            {else /}
+            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            {/if}
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="hidden" class="field-id" name="id">
+            <input type="hidden" class="field-type" name="type" value="{$type}">
+            <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit">提交</button>
+            <a href="{:url($url)}" class="layui-btn layui-btn-primary ml10">返回</a>
+        </div>
+    </div>
+</form>
+
+{include file="system@block/layui" /}
+<script>
+    layui.use(['upload', 'func', 'form'], function () {
+        var $ = layui.jquery, layer = layui.layer, upload = layui.upload, func = layui.func, form = layui.form;
+        // 编辑模式下表单自动赋值
+        func.assign({:json_encode($formData)});
+
+        /**
+         * 附件上传url参数说明
+         * @param string $from 来源
+         * @param string $group 附件分组,默认sys[系统]，模块格式：m_模块名，插件：p_插件名
+         * @param string $water 水印，参数为空默认调用系统配置，no直接关闭水印，image 图片水印，text文字水印
+         * @param string $thumb 缩略图，参数为空默认调用系统配置，no直接关闭缩略图，如需生成 500x500 的缩略图，则 500x500多个规格请用";"隔开
+         * @param string $thumb_type 缩略图方式
+         * @param string $input 文件表单字段名
+         */
+        upload.render({
+            elem: '.layui-upload'
+            , url: '{:url("system/annex/upload?water=&thumb=&from=&group=")}'
+            , method: 'post'
+            , before: function (input) {
+                layer.msg('文件上传中...', { time: 3000000 });
+            }, done: function (res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                }
+                layer.closeAll();
+                var input = $(obj).parents('.upload').find('.upload-input');
+                if ($(obj).attr('lay-type') == 'image') {
+                    input.siblings('img').attr('src', res.data.file).show();
+                }
+                input.val(res.data.file);
+            }
+        });
+        form.on('select(adtype)', function (data) {
+            if (data.value == 2) {
+                $('.ad-video').show();
+            } else {
+                $('.ad-video').hide();
+                if (data.value != 1) {
+                    $('.ad-img').hide();
+                } else {
+                    $('.ad-img').show();
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,43 @@
+{
+	"name": "DLNA投屏，支持IOS和安卓",
+	"id": "lyzml-DLNA",
+	"version": "1.0.20200413",
+	"description": "DLNA投屏，支持IOS和安卓，不使用IDFA，不支持镜像投屏，不支持音量和进度控制",
+	"_dp_type":"nativeplugin",
+	"_dp_nativeplugin":{
+		"android": {
+			"plugins": [
+				{
+					"type": "module",
+					"name": "lyzml-DLNA",
+					"class": "com.lyzml.dlna.LyzmlDLNAWXModule"
+				}
+			],
+			"integrateType": "aar",
+			"minSdkVersion": "16",
+			"permissions": [
+				"android.permission.INTERNET",
+				"android.permission.FLASHLIGHT",
+				"android.permission.VIBRATE"
+			],
+			"dependencies": [  
+				"com.android.support:recyclerview-v7:25.3.1",
+				"com.android.support:support-v4:25.3.1",
+				"com.android.support:appcompat-v7:25.3.1",
+				"com.alibaba:fastjson:1.1.46.android",
+				"com.facebook.fresco:fresco:1.13.0"
+			]
+		},
+		"ios": {
+			"plugins": [
+				{
+					"type": "module",
+					"name": "lyzml-DLNA",
+					"class": "LyzmlDLNAModule" 
+				}
+			],
+			"integrateType": "library",
+			"deploymentTarget": "9.0"
+		}
+	}
+}

@@ -1,0 +1,52 @@
+<style type="text/css">
+    .layui-table-body{overflow-x:auto;}
+    .layui-table-cell{font-size:12px;}
+</style>
+
+<table id="dataTable"></table>
+<script type="text/html" id="statusTpl">
+    <input type="checkbox" name="status" value="{{ d.status }}" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" {{ d.status == 1 ? 'checked' : '' }} data-href="{:url('status')}?id={{ d.id }}">
+</script>
+<script type="text/html" title="操作按钮模板" id="buttonTpl">
+    <a href="{:url('edit')}?id={{ d.id }}" class="layui-btn layui-btn-xs layui-btn-normal hisi-iframe-pop"  hisi-data="{width: '550px', height: '420px', title: '修改商品'}">修改</a>
+    <a href="{:url('del')}?id={{ d.id }}" class="layui-btn layui-btn-xs layui-btn-danger j-tr-del">删除</a>
+</script>
+{include file="system@block/layui" /}
+<script id="toolbar" type="text/html">
+    <a href="{:url('add')}" class="layui-btn layui-btn-normal layui-btn-sm hisi-iframe-pop" hisi-data="{width: '550px', height: '420px', title: '添加商品'}">&nbsp;添加</a>
+    <a data-href="{:url('status?val=1')}" class="layui-btn j-page-btns layui-btn-sm" data-table="dataTable">&nbsp;启用</a>
+    <a data-href="{:url('status?val=0')}" class="layui-btn layui-btn-warm j-page-btns layui-btn-sm" data-table="dataTable">&nbsp;禁用</a>
+    <a data-href="{:url('del')}" class="layui-btn layui-btn-danger j-page-btns confirm layui-btn-sm">&nbsp;删除</a>
+</script>
+<script type="text/javascript">
+    layui.use(['jquery', 'laydate', 'table'], function() {
+        var $ = layui.jquery, laydate = layui.laydate, table = layui.table;
+        table.render({
+            elem: '#dataTable'
+            ,url: '{:url()}' //数据接口
+            ,page: true //开启分页
+            ,skin: 'row'
+            ,even: true
+            ,limit: 20
+            ,text: {
+                none : '暂无相关数据'
+            }
+            ,toolbar: '#toolbar'
+            ,defaultToolbar: ['filter']
+            ,cols: [[ //表头
+                {type:'checkbox'}
+                ,{field: 'id', title: 'id',width: 100}
+                ,{field: 'cname', title: '商品栏目',width: 200}
+                ,{field: 'goods_name', title: '商品名称',width: 200}
+                ,{field: 'money', title: '商品金额',width: 200}
+                ,{field: 'status', title: '状态', width: 100, templet: '#statusTpl'}
+                ,{title: '操作', templet: '#buttonTpl'}
+            ]]
+            ,done: function(){
+                if (typeof(layui.global.addTableTool) !== 'undefined') {
+                    layui.global.addTableTool();
+                }
+            }
+        });
+    });
+</script>

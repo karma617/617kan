@@ -1,0 +1,39 @@
+<blockquote class="layui-elem-quote">示例:http://xxx.com/api.php/nb_api/test/index (隐藏API请自行配置伪静态)</blockquote>
+<table id="dataTable"></table>
+<script type="text/html" title="状态模板" id="statusTpl">
+    <input type="checkbox" name="status" value="{{ d.status }}" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" {{ d.status == 1 ? 'checked' : '' }} data-href="{:url('status')}?table=admin_member_level&id={{ d.id }}">
+</script>
+
+<script type="text/html" title="操作按钮模板" id="buttonTpl">
+    <a href="{:url('edit')}?id={{ d.id }}" class="layui-btn layui-btn-xs layui-btn-normal j-iframe-pop"hisi-data="{width: '520px', height: '200px', title: '修改'}">修改</a>
+    <a href="{:url('del')}?id={{ d.id }}" class="layui-btn layui-btn-xs layui-btn-danger j-tr-del">删除</a>
+</script>
+
+<script id="toolbar" type="text/html">
+    <a href="{:url('add')}" class="layui-btn layui-btn-normal layui-btn-sm hisi-iframe-pop" hisi-data="{width: '550px', height: '200px', title: '添加'}">&nbsp;添加</a><a data-href="{:url('status?val=1')}" class="layui-btn j-page-btns layui-btn-sm" data-table="dataTable">&nbsp;启用</a><a data-href="{:url('status?val=0')}" class="layui-btn layui-btn-warm j-page-btns layui-btn-sm" data-table="dataTable">&nbsp;禁用</a><a data-href="{:url('del')}" class="layui-btn layui-btn-danger j-page-btns confirm layui-btn-sm">&nbsp;删除</a>
+</script>
+
+{include file="system@block/layui" /}
+<script type="text/javascript">
+    layui.use(['table'], function() {
+        var table = layui.table;
+        table.render({
+            elem: '#dataTable'
+            ,url: '{:url()}' //数据接口
+            ,skin: 'row'
+            ,even: true
+            ,text: {
+                none : '暂无相关数据'
+            }
+            ,toolbar: '#toolbar'
+            ,defaultToolbar: false
+            ,cols: [[ //表头
+                {type:'checkbox'}
+                ,{field: 'name', title: '名称' ,width: 400, }
+                ,{field: 'secret', title: '密钥'}
+                ,{field: 'status', title: '状态', width: 100, templet: '#statusTpl'}
+                ,{title: '操作',  width: 300,templet: '#buttonTpl'}
+            ]]
+        });
+    });
+</script>

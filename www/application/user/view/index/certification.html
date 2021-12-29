@@ -1,0 +1,203 @@
+<form class="layui-form" action="{:url()}" method="post" id="editForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">自拍头像</label>
+        <div class="layui-input-inline w200">
+            <img style="max-width:150px;max-height:150px;width:150px;height:150px" src="{$user.has_certification.man_avatar}" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">真实姓名</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.true_name}" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline w200">
+            {if $user.has_certification.sex == 1}
+            <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="男" >
+            {else}
+            <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="女" >
+            {/if}
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-inline w200">
+            <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.man_id}" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证正反照片</label>
+        <div>
+            {foreach $user.has_certification.man_id_img as $item}
+                <img class="review" style="display: inline-block;max-width:150px;max-height:150px;width:150px;height:150px" src="{$item}" />
+            {/foreach}
+        </div>
+    </div>
+    {if $user.group_id == 1 } 
+        <div class="layui-form-item">
+            <label class="layui-form-label">驾驶证号</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_id}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">驾驶证登记日期</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_date}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车牌号</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_number}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车牌类型</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_number_type}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车辆颜色</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_color}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车型</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_type}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车长</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_length}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">载重</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_weight}吨" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车架号</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_frame_number}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发动机号</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_drever_number}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车主地址</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_man_address}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">详细地址</label>
+            <div class="layui-input-inline w200">
+                <input type="text" class="layui-input" disabled lay-verify="required" autocomplete="off" value="{$user.has_certification.car_man_address_info}" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">驾驶证正副照片</label>
+            <div>
+                {foreach $user.has_certification.car_id_img as $item}
+                <img class="review" style="display: inline-block;max-width:150px;max-height:150px;width:150px;height:150px" src="{$item}" />
+                {/foreach}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">行驶证正反照片</label>
+            <div>
+                {foreach $user.has_certification.car_drever_img as $item}
+                <img class="review" style="display: inline-block;max-width:150px;max-height:150px;width:150px;height:150px" src="{$item}" />
+                {/foreach}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车辆照片</label>
+            <div>
+                {foreach $user.has_certification.car_img as $item}
+                <img class="review" style="display: inline-block;max-width:100px;max-height:100px;width:100px;height:100px" src="{$item}" />
+                {/foreach}
+            </div>
+        </div>
+    {/if}
+    {if $user.has_certification.status == 1 } 
+        <div class="layui-form-item tiggers" >
+            <label class="layui-form-label">审核状态</label>
+            <div class="layui-input-inline">
+                <input type="radio" class="field-status" name="status" value="2" title="通过" checked>
+                <input type="radio" class="field-status" name="status" value="3" title="驳回">
+            </div>
+        </div>
+        <div class="layui-form-item overrule_msg" style="display: none;">
+            <label class="layui-form-label">驳回理由</label>
+            <div class="layui-input-inline">
+                <textarea style="width: 300px;height: 170px;" name="overrule_msg" class="field-overrule_msg"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                {:token()}
+                <input type="hidden" class="field-id" name="id">
+                <input type="hidden" name="salt" value="{:random(16, 0)}" class="field-salt" />
+            </div>
+        </div>
+        <div class="pop-bottom-bar hisi-footer">
+            <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit" lay-data="{pop: true, refresh: true}">审核通过</button>
+            <a href="{:url('index')}" class="layui-btn layui-btn-primary ml10">取消</a>
+        </div>
+    {else}
+        <div class="layui-form-item" {if $user.has_certification.status == 1 } style="display: none" {/if}>
+            <label class="layui-form-label">审核状态: </label>
+            <div class="layui-input-inline">
+                {if $user.has_certification.status == 2}已通过{/if}
+                {if $user.has_certification.status == 3}已驳回（$user.has_certification.overrule_msg）{/if}
+            </div>
+        </div>
+        <div class="pop-bottom-bar hisi-footer">
+            <a href="{:url('index')}" class="layui-btn layui-btn-primary ml10">返回</a>
+        </div>
+    {/if}
+</form>
+
+{include file="system@block/layui" /}
+<script>
+layui.use(['func'], function() {
+    var $ = layui.jquery, layer = layui.layer, upload = layui.upload, func = layui.func;
+    layui.func.assign({:json_encode($user)});
+
+    $('.tiggers').click(function(){
+        var _this = $(this);
+        if (3 == _this.find('input:checked').val()) {
+            $('.overrule_msg').show();
+        }else{
+            $('.overrule_msg').hide();
+        }
+    })
+
+    $('body').on('click', '.review' ,function(){
+        var _this = $(this);
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            area: ['800px','600px'],
+            shadeClose: true,
+            content: '<div id="img" style="z-index: 19891015;text-align: center;"><img style="width:100%" src="'+_this.attr('src')+'"></div>'
+        });
+    })
+
+});
+</script>

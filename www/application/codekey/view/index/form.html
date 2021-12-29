@@ -1,0 +1,33 @@
+<form class="layui-form" action="{:url('createCodekey')}" method="post" id="editForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属会员组</label>
+        <div class="layui-input-inline">
+            <select name="group_id" class="field-group_id" type="select">
+                {hisi:loop table="user_group" field="id,name" id="vo" order="id asc"}
+                    {if condition="$i != 1"}
+                    <option value="{$vo['id']}" {if condition="isset($_GET['id']) && $vo['id'] == $_GET['id']"}selected{/if} >{$vo['name']}</option>
+                    {/if}
+                {/hisi:loop}
+            </select>
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+            默认隐藏最低等级
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">生成数量</label>
+        <div class="layui-input-inline">
+            <input type="number" class="layui-input" name="number" autocomplete="off" placeholder="请输入要生成的数量">
+        </div>
+    </div>
+    <div class="pop-bottom-bar hisi-footer">
+        <button type="submit" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="formSubmit" lay-data="{pop: true, refresh: true}">提交保存</button>
+        <a href="javascript:parent.layui.layer.closeAll();" class="layui-btn layui-btn-primary ml10">取消</a>
+    </div>
+</form>
+{include file="system@block/layui" /}
+<script>
+layui.use(['func'], function() {
+    layui.func.assign({:json_encode($formData)});
+});
+</script>
