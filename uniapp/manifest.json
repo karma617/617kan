@@ -1,6 +1,6 @@
 {
     "name" : "云影评",
-    "appid" : "__UNI__1E9893A",
+    "appid" : "",
     "description" : "乐在一起看天下！",
     "versionName" : "3.0",
     "versionCode" : 30,
@@ -185,7 +185,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx31ffd2a640e35537",
+        "appid" : "",
         "setting" : {
             "urlCheck" : false,
             "minified" : true
@@ -205,7 +205,7 @@
     "h5" : {
         "title" : "云影评",
         "template" : "index.html",
-        "domain" : "h5.617kan.cn",
+        "domain" : "",
         "devServer" : {
             "https" : false
         }
